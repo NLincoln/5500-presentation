@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx"
+  },
+  "devDependencies": {
+    "mdx-deck": "^1.8.1"
+  },
+  "dependencies": {
+    "react-pose": "^4.0.2",
+    "styled-components": "^4.1.1"
+  }
+}

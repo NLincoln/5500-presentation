@@ -1,0 +1,88 @@
+export { code as theme } from 'mdx-deck/themes';
+
+# MIPL Functions
+## Or: How I Learned To Stop Worrying And Love ~~The Stack~~ Undefined Behavior
+
+---
+
+# So how do functions work in Pascal?
+
+```pascal
+(* Parameters work like one would expect *)
+Function Example(A: Integer) : Integer;
+Var
+ S : Integer;
+Begin
+ If A < 10 Then
+  (* Assign to the name of the function to return a value *)
+  (* Does not automatically exit the function *)
+  Example := 1;
+ Example := 2;
+End;
+```
+
+---
+
+# Return Values
+
+* Probably the easiest part of the assignment
+* Extra word is allocated in memory for the return value
+* When the function exits, that value is pushed onto the stack
+* Failing to return a value is UB ;)
+
+---
+
+# Parameters
+
+* Calling Convention
+* References
+* Arrays
+
+---
+
+# Calling Convention
+## Crazy Stack Trickery
+
+* Caller places all parameters onto arithmatic stack
+* Callee allocates memory for parameters
+* All parameters are popped from the stack and placed into memory
+* Callee begins executing
+
+---
+
+# Reference Parameters
+
+* Caller places address onto stack
+* Any modifications to the array value will be seen by the caller
+
+```pascal
+procedure example(val a: integer)
+begin
+  a := 2
+end
+```
+
+---
+
+# Arrays
+
+* Can be passed by reference, or by value
+* If passed by reference, caller will place the address of the start of the array onto the stack.
+* If passed by value, the start / end indexes of the array must match. Every element of the array is pushed onto the stack.
+* Passing an array by value that is too large is UB ;)
+
+```
+procedure example(val by_reference: array of integer, by_value: array[1..20] of integer)
+```
+
+---
+
+# Testing
+
+* Unfortunately, I have to create my own test files for this :(
+* Much like hw6, there will be several small scripts that are meant to demonstrate certain aspects of the change
+* The test script that I've been using all semester will be submitted along with the code
+
+---
+
+![Any Questions?](./david_pumpkins.png)
